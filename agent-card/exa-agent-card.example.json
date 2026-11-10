@@ -1,0 +1,125 @@
+{
+  "name": "Exa Agent",
+  "description": "Web research agent with its own search index. Send a task in plain language, optionally with a JSON Schema; get back schema-valid JSON with a citation for each field. Covers the open web plus people, company, paper and place indexes.",
+  "supportedInterfaces": [
+    {
+      "url": "https://api.exa.ai/a2a/v1",
+      "protocolBinding": "JSONRPC",
+      "protocolVersion": "1.0"
+    },
+    {
+      "url": "https://api.exa.ai/a2a/v1/rest",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "provider": {
+    "organization": "Exa",
+    "url": "https://exa.ai"
+  },
+  "version": "0.1.0-example",
+  "documentationUrl": "https://exa.ai/docs/reference/agent-api/overview",
+  "iconUrl": "https://exa.ai/favicon.ico",
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": true,
+    "extendedAgentCard": false
+  },
+  "securitySchemes": {
+    "exaApiKey": {
+      "apiKeySecurityScheme": {
+        "description": "Exa API key from dashboard.exa.ai",
+        "location": "header",
+        "name": "x-api-key"
+      }
+    },
+    "bearer": {
+      "httpAuthSecurityScheme": {
+        "description": "Exa API key as a Bearer token",
+        "scheme": "Bearer"
+      }
+    }
+  },
+  "securityRequirements": [
+    {
+      "schemes": {
+        "exaApiKey": {
+          "list": []
+        }
+      }
+    },
+    {
+      "schemes": {
+        "bearer": {
+          "list": []
+        }
+      }
+    }
+  ],
+  "defaultInputModes": [
+    "text/plain",
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "application/json",
+    "text/plain"
+  ],
+  "skills": [
+    {
+      "id": "web-research",
+      "name": "Research a question",
+      "description": "Searches the web, reads sources and returns a cited answer, or schema-valid JSON when a JSON Schema is sent. Effort sets depth: minimal $0.012 to xhigh $1.00 per task.",
+      "tags": [
+        "research",
+        "search",
+        "citations",
+        "structured-output"
+      ],
+      "examples": [
+        "What changed in the EU AI Act implementation timeline this month? Cite primary sources.",
+        "Compare the pricing pages of the top 5 vector databases as JSON."
+      ]
+    },
+    {
+      "id": "list-building",
+      "name": "Build a list of companies or people",
+      "description": "Finds every company or person that matches criteria, using Exa's company and 1B+ people indexes, and returns rows with a citation per field.",
+      "tags": [
+        "lead-generation",
+        "companies",
+        "people",
+        "websets"
+      ],
+      "examples": [
+        "Series A-C fintechs in the EU that launched an AI agent in 2026, with a source for each.",
+        "Heads of data at US insurers with over 1,000 employees."
+      ]
+    },
+    {
+      "id": "enrich-rows",
+      "name": "Enrich rows you already have",
+      "description": "Takes rows as JSON and fills in missing fields (funding, headcount, tech used, recent news) with a citation for each value.",
+      "tags": [
+        "enrichment",
+        "crm",
+        "data"
+      ],
+      "examples": [
+        "For these 50 accounts, add last funding round, HQ country and whether they mention SOC 2."
+      ]
+    },
+    {
+      "id": "monitor",
+      "name": "Watch for changes",
+      "description": "Re-runs a search on a schedule and pushes new results to your webhook. Built on Exa Monitors ($2 per 1,000 runs).",
+      "tags": [
+        "monitoring",
+        "alerts",
+        "webhooks"
+      ],
+      "examples": [
+        "Tell me when any of these 20 competitors changes pricing or announces a funding round."
+      ]
+    }
+  ]
+}

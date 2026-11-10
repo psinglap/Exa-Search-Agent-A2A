@@ -40,7 +40,7 @@ table.vt td.st3{min-width:240px}table.vt td.st3 span{display:block;margin-top:4p
 .small a{color:inherit}
 </style>'''
 nav = ('<div class="sitenav"><div class="in"><a class="b" href="../">Exa Search Atlas</a><a class="on" href="./"><b>Atlas</b></a>'
-       '<a href="../accounts/">Target accounts</a><a href="https://psinglap.github.io/websearch-api-eval/">Benchmark</a></div></div>')
+       '<a href="../accounts/">Target accounts</a><a href="../agent-card/">Agent Card</a><a href="https://psinglap.github.io/websearch-api-eval/">Benchmark</a></div></div>')
 
 
 def src(label, url):

@@ -247,7 +247,7 @@ out = re.sub(r'(<meta (?:name|property)="(?:description|og:description|twitter:d
 out = out.replace('https://psinglap.github.io/websearch-api-eval/accounts/', URL)
 out = out.replace('content="Web Search API Eval"', 'content="Exa Search Atlas"')
 out = re.sub(r'<div class="top">.*?</div></div>', '<div class="top"><div class="in"><a class="brand" href="../">Exa Search Atlas</a><a class="n" href="../atlas/">Atlas</a>'
-             '<a class="n keep on" href="./"><b>Target accounts</b></a><a class="n" href="https://psinglap.github.io/websearch-api-eval/">Benchmark</a></div></div>', out, count=1, flags=re.S)
+             '<a class="n keep on" href="./"><b>Target accounts</b></a><a class="n" href="../agent-card/">Agent Card</a><a class="n" href="https://psinglap.github.io/websearch-api-eval/">Benchmark</a></div></div>', out, count=1, flags=re.S)
 hero = f'''<header class="hero">
  <div>
   <div class="eyebrow">GTM / Exa target accounts<span>November 10, 2026</span></div>
