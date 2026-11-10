@@ -64,7 +64,21 @@ codex mcp add exa --url "https://mcp.exa.ai/mcp?tools=web_search_exa,agent_run"
 # Cursor and other MCP clients (mcp.json)
 {"mcpServers": {"exa": {"type": "streamable-http",
   "url": "https://mcp.exa.ai/mcp?tools=web_search_exa,agent_run"}}}'''
-TABS = [('python', 'Python SDK', PY, '<code>pip install exa-py</code> · also <code>npm i exa-js</code>'),
+A2A = '''# 1. Find Exa
+curl https://exa.ai/.well-known/agent-card.json
+
+# 2. Hand it a task (A2A SendMessage)
+curl -X POST https://api.exa.ai/a2a/v1 \\
+  -H "x-api-key: $EXA_API_KEY" -H "Content-Type: application/json" \\
+  -d '{
+    "jsonrpc": "2.0", "id": 1, "method": "SendMessage",
+    "params": { "message": {
+      "messageId": "msg-1", "role": "ROLE_USER",
+      "parts": [{ "text": "EU fintechs that launched an AI agent in 2026, with a source for each" }]
+    }}
+  }\''''
+TABS = [('a2a', 'A2A', A2A, 'From any A2A agent: read the card, then send a task. You get back a task you can stream or poll, and the answer arrives as an artifact.'),
+        ('python', 'Python SDK', PY, '<code>pip install exa-py</code> · also <code>npm i exa-js</code>'),
         ('openai', 'OpenAI SDK', OAI, 'Already on the OpenAI SDK? Point it at Exa and set <code>model="exa-agent"</code>.'),
         ('mcp', 'MCP', MCP, 'In Claude Code, Cursor or Codex, your agent gets an <code>agent_run</code> tool.'),
         ('curl', 'HTTP', CURL, 'Any language. You get a run ID at once; poll <code>GET /agent/runs/{id}</code> or stream.')]
@@ -114,6 +128,18 @@ p{{margin:0 0 16px}}
 .st .n{{width:24px;height:24px;border-radius:50%;border:1px solid #cfcac5;display:grid;place-items:center;font:500 12px var(--mono);color:var(--muted)}}.st .n.on{{background:var(--brand);border-color:var(--brand);color:#fff}}
 .st b{{display:block;font-weight:500}}.st span{{font-size:14px;color:var(--muted)}}
 .st code{{font:11.5px var(--mono);color:var(--muted);text-align:right}}
+.acard{{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:12px}}
+.ac-head{{display:flex;gap:12px;align-items:center}}
+.ac-logo{{width:40px;height:40px;border-radius:10px;background:var(--brand);color:#fff;display:grid;place-items:center;font:500 20px var(--serif)}}
+.ac-head b{{display:block;font:500 18px var(--sans)}}.ac-head span{{font:11.5px var(--mono);color:var(--muted)}}
+.ac-live{{margin-left:auto;font:500 11px var(--mono)!important;color:#16794c!important;background:#e7f6ee;border-radius:99px;padding:3px 10px}}
+.ac-desc{{margin:0;font-size:14.5px;color:#374151}}
+.ac-grid{{display:grid;grid-template-columns:1.4fr 1fr;gap:12px 18px;border-top:1px solid var(--line);padding-top:12px}}
+.ac-grid>div:first-child{{grid-row:span 3}}
+.ac-k{{display:block;font:500 10.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--brand);margin-bottom:6px}}
+.ac-chips{{display:flex;flex-wrap:wrap;gap:6px}}.ac-chips span{{font-size:13px;background:var(--brand-soft);color:var(--ink);border-radius:8px;padding:4px 10px}}
+.ac-grid code{{display:block;font:12px var(--mono)}}.ac-s{{display:block;font-size:12.5px;color:var(--muted)}}
+.ac-foot{{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:10px;font-size:13px}}.ac-foot code{{font:12px var(--mono);color:var(--muted)}}
 .runs{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
 .rn{{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px}}.rn b{{font-weight:500}}.rn p{{font-size:14px;margin:4px 0 0;color:#374151}}
 .cus{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}}
@@ -163,7 +189,7 @@ code{{font-family:var(--mono);font-size:.88em}}
 .sign{{font:400 26px/1.3 var(--serif);margin:40px 0 0;padding-top:22px;border-top:1px solid var(--line)}}
 footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 @media (max-width:860px){{.cus{{grid-template-columns:repeat(2,minmax(0,1fr))}}}}
-@media (max-width:760px){{.hero-in,.cus,.bars2,.hub,.runs{{grid-template-columns:1fr}}.hub .core{{margin:6px auto}}.st{{grid-template-columns:30px 1fr}}.st code{{display:none}}.i .pop{{left:auto;right:-8px;transform:none}}.br{{grid-template-columns:92px 1fr 46px}}}}
+@media (max-width:760px){{.hero-in,.cus,.bars2,.hub,.runs,.ac-grid{{grid-template-columns:1fr}}.ac-grid>div:first-child{{grid-row:auto}}.hub .core{{margin:6px auto}}.st{{grid-template-columns:30px 1fr}}.st code{{display:none}}.i .pop{{left:auto;right:-8px;transform:none}}.br{{grid-template-columns:92px 1fr 46px}}}}
 </style></head><body>
 <div class="col"><h1>Exa Agent, the search agent your agents can hire</h1></div>
 
@@ -180,10 +206,23 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 </div></div>
 
 <div class="col">
-<div class="byline"><span class="av">PS</span><div>Pallavi Singla<small>Example writeup · Nov 10, 2026 · not an Exa publication</small></div></div>
+<div class="byline"><span class="av">PS</span><div>Pallavi Singla<small>Example launch post · Nov 10, 2026 · not an Exa publication; the Agent Card shown is a mock-up</small></div></div>
 
 <p class="lead">If you've built an agent that does research, you've probably watched it do something a little painful. It searches, opens five pages, skims them, searches again, opens five more. It gets there in the end, but it spends a lot of tokens and time on work that isn't really its job.</p>
 <p>Exa Agent is built for that moment. Instead of giving your agent links to read, you give Exa the question and the shape of the answer you want. Exa does the searching and reading on its side, then sends the answer back with a link behind every field, so you can check where each fact came from.</p>
+<p><b>Starting today, Exa Agent has a public A2A Agent Card.</b> Any agent that speaks A2A, whether it runs in Gemini Enterprise, AWS, Azure or your own stack, can now find Exa, see what it can do, and hand it a task. It's the same Exa Agent and the same API key; other agents just don't need custom code to reach it anymore.</p>
+<div class="panel"><div class="acard">
+  <div class="ac-head"><div class="ac-logo">E</div><div><b>Exa Agent</b><span>Exa · A2A 1.0 · v1.0</span></div><span class="ac-live">● Live</span></div>
+  <p class="ac-desc">Web research agent with its own search index. Send a task, optionally with a JSON Schema; get back schema-valid JSON with a source for every field.</p>
+  <div class="ac-grid">
+    <div><span class="ac-k">Skills</span><div class="ac-chips"><span>Research a question</span><span>Build a list of companies or people</span><span>Enrich rows you already have</span><span>Watch for changes</span></div></div>
+    <div><span class="ac-k">Endpoint</span><code>https://api.exa.ai/a2a/v1</code><span class="ac-s">JSON-RPC and HTTP+JSON</span></div>
+    <div><span class="ac-k">Sign-in</span><code>x-api-key</code><span class="ac-s">your existing Exa API key</span></div>
+    <div><span class="ac-k">Capabilities</span><span class="ac-s">streaming progress · push notifications</span></div>
+  </div>
+  <div class="ac-foot"><code>GET exa.ai/.well-known/agent-card.json</code><a href="exa-agent-card.example.json" target="_blank" rel="noopener">View the card JSON</a></div>
+</div></div>
+
 <p>Google was designed for a person who runs two or three searches and clicks the best link. Agents don't work that way: one research task can set off as many as 186 searches {i('Measured across agentic search traces.', [('arXiv 2602.17518', 'https://arxiv.org/html/2602.17518')])}. Google gave people links. Exa gives agents answers.</p>
 
 <h2>Why agent-to-agent, and why now</h2>
@@ -249,7 +288,7 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
   <div class="side">
     <div class="nd"><b>MCP</b><span>agent_run · Claude Code, Cursor, Codex</span></div>
     <div class="nd"><b>Gemini Enterprise</b><span>Agent Marketplace</span></div>
-    <div class="nd next"><b>Any A2A agent · next</b><span>Agent Card {i('A2A is the open agent-to-agent standard (Linux Foundation, 150+ organizations). A public card at exa.ai/.well-known/agent-card.json is a proposal in this example, not live.', [('A2A spec', 'https://a2a-protocol.org/latest/specification/'), ('Example card', 'exa-agent-card.example.json')])}</span></div>
+    <div class="nd"><b>Any A2A agent</b><span>Agent Card · exa.ai/.well-known/agent-card.json</span></div>
   </div>
 </div></div>
 <p>Need only fast search inside a model call? Exa Search is the default web search on OpenRouter, and it's built into Vercel AI Gateway and Cloudflare {i('Exa Search, not the full agent.', [('OpenRouter', 'https://exa.ai/customers/openrouter'), ('Vercel', 'https://vercel.com/changelog/exa-joins-vercel-ai-gateway-agent-marketplace'), ('Cloudflare', 'https://developers.cloudflare.com/web-search/providers/')])}.</p>
@@ -261,7 +300,7 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 
 <p class="sign">Next time your agent opens its tenth browser tab, try handing the question to Exa instead.</p>
 </div>
-<footer class="col">Example writeup by Pallavi Singla, showing how Exa could position agent-to-agent search for customers. Not written, reviewed or endorsed by Exa. Customer stories come from Exa's public case studies. Benchmark numbers come from my open, rerunnable test of four search APIs.</footer>
+<footer class="col">Example launch post by Pallavi Singla, showing how Exa could position agent-to-agent search for customers. The A2A Agent Card and the /a2a/v1 endpoint are a mock-up of what such a launch would look like; they are not live. Not written, reviewed or endorsed by Exa. Customer stories come from Exa's public case studies. Benchmark numbers come from my open, rerunnable test of four search APIs.</footer>
 <script>
 document.querySelectorAll('.tb').forEach(b=>b.onclick=()=>{{document.querySelectorAll('.tb,.tp').forEach(x=>x.classList.toggle('on',x.dataset.t===b.dataset.t))}});
 </script>

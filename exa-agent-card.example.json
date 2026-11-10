@@ -17,7 +17,7 @@
     "organization": "Exa",
     "url": "https://exa.ai"
   },
-  "version": "0.1.0-example",
+  "version": "1.0.0",
   "documentationUrl": "https://exa.ai/docs/reference/agent-api/overview",
   "iconUrl": "https://exa.ai/favicon.ico",
   "capabilities": {
