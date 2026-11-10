@@ -31,15 +31,6 @@ CUST = [
 cust = ''.join(f'''<div class="cu"><div class="cu-top"><img src="logos/{lg}" alt="{n} logo" width="36" height="36"><div><b>{n}</b><span class="cu-k">{k}</span></div></div>
 <div class="cu-stat"><span class="num">{num}</span><span class="lab">{lab}</span></div><p>{h}</p><div class="cu-f">{''.join(f'<span class="chip">{x.strip()}</span>' for x in p.split('·'))}<span class="sp"></span>{i(n + " case study on exa.ai.", [("Read the case study", u)])}</div></div>''' for lg, n, k, num, lab, h, p, u in CUST)
 
-# ---------- benchmark table (Exa 3.0, Oct 19, 2026) ----------
-BENCH = [('BrowseComp', 'Research that takes many steps', '91.8%', '91.5%', '83.5%', '63.1%'),
-         ('ATLAS', 'Agentic search', '42.0%', '37.2%', '28.2%', '24.8%'),
-         ('WideSearch', 'Complete lists', '56.1%', '54.0%', '54.8%', '53.7%'),
-         ('Company FindAll', 'Every matching company', '15.4', '14.2', '13.3', '9.7'),
-         ('People FindAll', 'Every matching person', '7.6', '6.8', '3.8', '3.8'),
-         ('WebCode', 'Code and docs', '75.5%', '69.9%', '68.0%', '64.5%'),
-         ('FinSearchComp', 'Finance questions', '68.0%', '63.4%', '57.6%', '66.0%')]
-bench = ''.join(f'<tr><td><b>{b}</b><span class="sub">{w}</span></td><td class="x">{a}</td><td>{p}</td><td>{br}</td><td>{pa}</td></tr>' for b, w, a, p, br, pa in BENCH)
 
 PY = '''from exa_py import Exa
 
@@ -195,7 +186,12 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 <p>Exa Agent is built for that moment. Instead of giving your agent links to read, you give Exa the question and the shape of the answer you want. Exa does the searching and reading on its side, then sends the answer back with a link behind every field, so you can check where each fact came from.</p>
 <p>Google was designed for a person who runs two or three searches and clicks the best link. Agents don't work that way: one research task can set off as many as 186 searches {i('Measured across agentic search traces.', [('arXiv 2602.17518', 'https://arxiv.org/html/2602.17518')])}. Google gave people links. Exa gives agents answers.</p>
 
-<h2>Why it matters</h2>
+<h2>Why agent-to-agent, and why now</h2>
+<p>Until recently, an agent that needed something it couldn't do itself had one option: call a tool and do the rest of the work on its own. A2A changes that. It's the open standard Google started in 2025 so that agents from different companies can find each other, hand over a task and get a result back. It now sits with the Linux Foundation, more than 150 organizations back it, and it's built into Google Cloud, AWS and Azure {i('A2A protocol: 150+ organizations, built into major cloud platforms.', [('Linux Foundation', 'https://linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year'), ('A2A spec', 'https://a2a-protocol.org/latest/specification/')])}.</p>
+<p>That matters because companies are starting to buy agents the way they buy software. Google's Gemini Enterprise Agent Marketplace lists agents from partners that any employee's Gemini agent can call, and Google asks those agents to speak A2A {i("Google's guide to publishing agents in Gemini Enterprise and Google Cloud Marketplace.", [('Google Cloud', 'https://cloud.google.com/blog/topics/developers-practitioners/publish-agents-in-gemini-enterprise-and-google-cloud-marketplace')])}. Exa Agent was there at launch in April 2026 {i('Exa + Google Cloud, Apr 28, 2026: "No code, no separate procurement."', [('Exa blog', 'https://exa.ai/blog/exa-google-cloud')])}. So when a company's Gemini agent needs research done, Exa is already on the shelf, with no code to write and no new contract to sign.</p>
+<p>Search is the job most agents hand off first. Almost every agent needs facts from the web, and very few want to read the web themselves. That's the opening for a search agent other agents can hire.</p>
+
+<h2>What changes for your agent</h2>
 <p><b>Most searches aren't typed by people anymore.</b> Exa says agents already make up most of the web's traffic by volume {i('Exa, Aug 28, 2026.', [('Dynamic Highlights', 'https://exa.ai/blog/dynamic-highlights')])}. Yet most search tools still return what a person wants to see, a list of links and snippets, and the agent has to read all of it before it can use any of it.</p>
 <p><b>You pay for every page your agent reads, twice.</b> Once in tokens, and again in answer quality, because models get worse at finding the right fact as their context fills up. In one test, a focused 300-token input beat 113,000 tokens that held the same answer {i('Chroma tested 18 models.', [('Chroma', 'https://www.trychroma.com/research/context-rot')])}.</p>
 <p><b>Your agent has better things to do.</b> A coding agent should be writing code, and a sales agent should be writing the email. Handing the research to Exa is like handing it to a colleague who comes back with a short summary and the sources attached.</p>
@@ -217,21 +213,29 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 <div class="panel"><div class="cus">{cust}</div></div>
 
 <h2>Why Exa fits agent-to-agent</h2>
-<p>If you're picking an agent to do your agent's research, a few things matter most: how much text it sends back, whether the top results are actually relevant, whether it finds everything on a list and not just the first few, and whether it can stay with a question that takes many steps. Here's how Exa compares.</p>
+<p>I tested four search APIs on 30 real agent tasks, three runs each, in an <a href="{EVAL}" target="_blank" rel="noopener">open benchmark you can rerun</a>. When one agent hands work to another, the calling agent cares about a few things above all: are the results on topic, is the answer right, how much text comes back to pay for, and what a correct answer costs. Exa led on relevance and on accuracy under pressure, and stayed near the top on tokens and cost.</p>
 <div class="panel"><div class="bars2">
-  <div class="ch"><span class="ch-h">Tokens sent back to your agent</span>
-    <div class="br"><span>Full page</span><span class="tr"><span class="fl g" style="width:100%"></span></span><b>100%</b></div>
-    <div class="br"><span>Exa highlights</span><span class="tr"><span class="fl" style="width:5%"></span></span><b>5%</b></div>
-    <span class="cap">95% fewer tokens for the same answer; 30% fewer tokens in agent loops, with 2.1% better quality. <span class="tg">Exa-reported</span> {i('Dynamic Highlights, Aug 28, 2026.', [('Dynamic Highlights', 'https://exa.ai/blog/dynamic-highlights')])}</span></div>
   <div class="ch"><span class="ch-h">On-topic share of the top 5 results</span>
     <div class="br"><span>Exa</span><span class="tr"><span class="fl" style="width:100%"></span></span><b>40%</b></div>
     <div class="br"><span>You.com</span><span class="tr"><span class="fl g" style="width:92%"></span></span><b>37%</b></div>
     <div class="br"><span>Tavily</span><span class="tr"><span class="fl g" style="width:65%"></span></span><b>26%</b></div>
     <div class="br"><span>Parallel</span><span class="tr"><span class="fl g" style="width:65%"></span></span><b>26%</b></div>
-    <span class="cap">The right results first means fewer follow-up searches. <span class="tg ind">Independent</span> {i('Open, rerunnable benchmark: 30 agent queries x 3 runs per API, 8 Oct 2026.', [('Open benchmark', EVAL)])}</span></div>
+    <span class="cap">The best of the four. When the first results are the right ones, the calling agent needs fewer follow-up searches.</span></div>
+  <div class="ch"><span class="ch-h">Tokens sent back per query</span>
+    <div class="br"><span>You.com</span><span class="tr"><span class="fl g" style="width:100%"></span></span><b>41K</b></div>
+    <div class="br"><span>Tavily</span><span class="tr"><span class="fl g" style="width:37%"></span></span><b>15K</b></div>
+    <div class="br"><span>Exa</span><span class="tr"><span class="fl" style="width:20%"></span></span><b>8.4K</b></div>
+    <div class="br"><span>Parallel</span><span class="tr"><span class="fl g" style="width:4%"></span></span><b>1.7K</b></div>
+    <span class="cap">Top 5 results with page content. Exa sends back about a fifth of what You.com does. Parallel's short excerpts are smaller still, but less of what it returns is on topic.</span></div>
 </div>
-<div class="bt" style="margin-top:10px"><table><thead><tr><th>Benchmark</th><th class="x">Exa 3.0</th><th>Perplexity</th><th>Brave</th><th>Parallel</th></tr></thead><tbody>{bench}</tbody></table></div>
-<p class="cap" style="margin:8px 2px 0">Exa-reported, Oct 2026: each provider's best single-step search endpoint, run in the same agent harness. FindAll counts matching entities found per task {i('Exa 3.0 benchmark table.', [('Exa 3.0', 'https://exa.ai/blog/exa-3')])}. Agents trained on Exa also needed 69% fewer tokens to match agents trained on Google results {i('Exa RL study, May 13, 2026: 0.58B vs 1.89B tokens.', [('RL study', 'https://exa.ai/blog/rl-search-outcomes')])}.</p>
+<div class="bt" style="margin-top:10px"><table><thead><tr><th>What the calling agent needs</th><th class="x">Exa</th><th>You.com</th><th>Tavily</th><th>Parallel</th></tr></thead><tbody>
+<tr><td><b>On-topic results</b><span class="sub">Share of the top 5 that is relevant</span></td><td class="x">40%</td><td>37%</td><td>26%</td><td>26%</td></tr>
+<tr><td><b>Right answer under pressure</b><span class="sub">Insurance: live catastrophe facts mid-call</span></td><td class="x">75%</td><td>65%</td><td>67%</td><td>67%</td></tr>
+<tr><td><b>Small hand-back</b><span class="sub">Tokens per query, top 5 with content</span></td><td class="x">8.4K</td><td>41K</td><td>15K</td><td>1.7K</td></tr>
+<tr><td><b>Cost of a correct answer</b><span class="sub">Search cost per correct answer</span></td><td class="x">$0.012</td><td>$0.026</td><td>$0.016</td><td>$0.008</td></tr>
+<tr><td><b>Speed</b><span class="sub">Median response time</span></td><td class="x">1.1 s</td><td>0.6 s</td><td>1.9 s</td><td>2.0 s</td></tr>
+</tbody></table></div>
+<p class="cap" style="margin:8px 2px 0">Open benchmark, run Oct 8, 2026: 30 agent queries across GTM, insurance and finance, 3 runs each, every API on its default settings. The full scorecard, including empty results and accuracy by use case, is on the <a href="{EVAL}" target="_blank" rel="noopener">benchmark site</a>.</p>
 </div>
 
 <h2>Where to find it</h2>
@@ -257,7 +261,7 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 
 <p class="sign">Next time your agent opens its tenth browser tab, try handing the question to Exa instead.</p>
 </div>
-<footer class="col">Example writeup by Pallavi Singla, showing how Exa could position agent-to-agent search for customers. Not written, reviewed or endorsed by Exa. Customer stories and Exa benchmark numbers come from Exa's public pages; open-benchmark numbers come from an independent test.</footer>
+<footer class="col">Example writeup by Pallavi Singla, showing how Exa could position agent-to-agent search for customers. Not written, reviewed or endorsed by Exa. Customer stories come from Exa's public case studies. Benchmark numbers come from my open, rerunnable test of four search APIs.</footer>
 <script>
 document.querySelectorAll('.tb').forEach(b=>b.onclick=()=>{{document.querySelectorAll('.tb,.tp').forEach(x=>x.classList.toggle('on',x.dataset.t===b.dataset.t))}});
 </script>
