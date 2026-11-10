@@ -90,7 +90,7 @@ page = f'''<!doctype html>
 <title>Exa Agent, the search agent your agents can hire</title>
 <meta name="description" content="Example writeup: Exa Agent as the search agent other AI agents hire. Why it matters, where it runs, why it fits agent-to-agent, and how to call it. Not an Exa publication.">
 <link rel="canonical" href="{SITE}">
-<meta property="og:title" content="Exa Agent, the search agent your agents can hire"><meta property="og:description" content="Google answered people's queries. Exa takes agents' assignments.">
+<meta property="og:title" content="Exa Agent, the search agent your agents can hire"><meta property="og:image" content="{SITE}img/card.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{SITE}img/card.png"><meta property="og:description" content="Google answered people's queries. Exa takes agents' assignments.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
 <style>
@@ -238,7 +238,7 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 <p class="lead">If you've built an agent that does research, you've probably watched it do something a little painful. It searches, opens five pages, skims them, searches again, opens five more. It gets there in the end, but it spends a lot of tokens and time on work that isn't really its job.</p>
 <p>Exa Agent is built for that moment. Instead of giving your agent links to read, you give Exa the question and the shape of the answer you want. Exa does the searching and reading on its side, then sends the answer back with a link behind every field, so you can check where each fact came from.</p>
 <p>Meet the <b>Exa A2A Card</b>. It's the public profile other agents read before they hire Exa: what Exa Agent is good at, how it differs from a search tool, where it's already listed, and how to connect. Any agent that speaks A2A can read it at <code>exa.ai/.well-known/agent-card.json</code> and send Exa a task, with no custom integration.</p>
-<div class="panel"><div class="xc">
+<div class="panel" data-shot="card"><div class="xc">
   <div class="xc-head">
     <span class="xc-logo"><img src="logos/exa-mark.svg" alt="Exa logo" width="30" height="30"></span>
     <div><b>Exa Agent</b><span>Exa A2A Card · A2A 1.0</span></div>
@@ -291,7 +291,7 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 
 <h2>Search API or Exa Agent?</h2>
 <p>Both run on the same Exa index. The difference is who does the work. With the Search API, your agent gets the ingredients and cooks. With Exa Agent, it gets the finished dish.</p>
-<div class="panel"><div class="vs">
+<div class="panel" data-shot="compare"><div class="vs">
   <div class="lane">
     <span class="ln-h">Exa Search API</span><span class="ln-s">your agent does the work</span>
     <div class="node">Your agent</div>
@@ -340,7 +340,7 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 
 <h2>Why Exa fits agent-to-agent</h2>
 <p>I tested four search APIs on 30 real agent tasks, three runs each, in an <a href="{EVAL}" target="_blank" rel="noopener">open benchmark you can rerun</a>. When one agent hands work to another, the calling agent cares about a few things above all: are the results on topic, is the answer right, how much text comes back to pay for, and what a correct answer costs. Exa led on relevance and on accuracy under pressure, and stayed near the top on tokens and cost.</p>
-<div class="panel"><div class="bars2">
+<div class="panel" data-shot="bench"><div class="bars2">
   <div class="ch"><span class="ch-h">On-topic share of the top 5 results</span>
     <div class="br"><span>Exa</span><span class="tr"><span class="fl" style="width:100%"></span></span><b>40%</b></div>
     <div class="br"><span>You.com</span><span class="tr"><span class="fl g" style="width:92%"></span></span><b>37%</b></div>
@@ -365,7 +365,7 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 </div>
 
 <h2>Where to find it</h2>
-<div class="panel"><div class="hub">
+<div class="panel" data-shot="where"><div class="hub">
   <div class="side">
     <div class="nd"><b>Exa Agent API</b><span>POST api.exa.ai/agent/runs</span></div>
     <div class="nd"><b>Python and JS SDKs</b><span>exa-py · exa-js</span></div>
@@ -389,6 +389,8 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 </div>
 <footer class="col">Example launch post by Pallavi Singla, showing how Exa could position agent-to-agent search for customers. The A2A Agent Card and the /a2a/v1 endpoint are a mock-up of what such a launch would look like; they are not live. Not written, reviewed or endorsed by Exa. Customer stories come from Exa's public case studies. Benchmark numbers come from my open, rerunnable test of four search APIs.</footer>
 <script>
+(function(){{var m=location.search.match(/shot=([a-z]+)/);if(!m)return;var el=document.querySelector('[data-shot="'+m[1]+'"]');if(!el)return;
+document.body.innerHTML='';document.body.style.cssText='margin:0;padding:20px;background:#fff';el.style.margin='0';document.body.appendChild(el);document.documentElement.dataset.h=el.offsetHeight+40;}})();
 document.querySelectorAll('.tb').forEach(b=>b.onclick=()=>{{document.querySelectorAll('.tb,.tp').forEach(x=>x.classList.toggle('on',x.dataset.t===b.dataset.t))}});
 </script>
 </body></html>'''
