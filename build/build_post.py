@@ -137,7 +137,7 @@ p{{margin:0 0 16px}}
 .xc-k{{display:block;font:500 10.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--brand);margin-top:6px}}
 .xc-uses{{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}}
 .xc-uses div{{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px}}
-.xc-uses b{{display:block;font-size:13.5px;font-weight:600;margin-bottom:4px}}.xc-uses span{{font:italic 400 14px/1.35 var(--serif);color:#374151}}
+.xc-uses b{{display:block;font-size:13px;font-weight:600;margin-bottom:4px}}.xc-uses span{{font:400 12.5px/1.45 var(--sans);color:#4b5563}}
 .xc-why{{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}}
 .xc-why div{{border-left:3px solid var(--brand);padding:2px 0 2px 10px}}
 .xc-why b{{display:block;font:400 19px/1.2 var(--serif)}}.xc-why span{{font-size:13px;color:var(--muted)}}
@@ -257,10 +257,10 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 
   <span class="xc-k">Why Exa, not another search tool</span>
   <div class="xc-why">
+    <div><b>Fewer tokens</b><span>About 8K tokens back per query, a fifth of what You.com sends, in an open benchmark.</span></div>
+    <div><b>Lower cost per answer</b><span>$0.012 per correct answer, below You.com ($0.026) and Tavily ($0.016). Priced per task, with a cap.</span></div>
     <div><b>Its own index</b><span>The web plus 1B+ people and company profiles, so lists come back complete.</span></div>
     <div><b>Answers, not links</b><span>Schema-valid JSON, with a source behind every field.</span></div>
-    <div><b>40% on-topic</b><span>The most relevant top 5 of four search APIs in an open benchmark.</span></div>
-    <div><b>Priced per task</b><span>$0.012 to $1.00 a task, with a spending cap you set.</span></div>
   </div>
 
   <span class="xc-k">Listed on</span>
