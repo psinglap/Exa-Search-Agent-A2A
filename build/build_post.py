@@ -181,13 +181,14 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 <div class="col">
 <div class="byline"><span class="av">PS</span><div>Pallavi Singla<small>Example writeup · Nov 10, 2026 · not an Exa publication</small></div></div>
 
-<p class="lead"><b>Exa Agent is search you can delegate.</b> Your agent describes the job. Exa does the searching and the reading, and returns one answer in the shape you asked for, with a source for every field.</p>
-<p>Google gave people ten links and let them read. That works for a person who runs two or three searches. An agent can run up to 186 searches for one task {i('Measured across agentic search traces.', [('arXiv 2602.17518', 'https://arxiv.org/html/2602.17518')])}, and it pays for every page it reads in tokens, time and context. Where Google gave you links, Exa Agent gives your agent the answer.</p>
+<p class="lead">If you've built an agent that does research, you've probably watched it do something a little painful. It searches, opens five pages, skims them, searches again, opens five more. It gets there in the end, but it spends a lot of tokens and time on work that isn't really its job.</p>
+<p>Exa Agent is built for that moment. Instead of giving your agent links to read, you give Exa the question and the shape of the answer you want. Exa does the searching and reading on its side, then sends the answer back with a link behind every field, so you can check where each fact came from.</p>
+<p>Google was designed for a person who runs two or three searches and clicks the best link. Agents don't work that way: one research task can set off as many as 186 searches {i('Measured across agentic search traces.', [('arXiv 2602.17518', 'https://arxiv.org/html/2602.17518')])}. Google gave people links. Exa gives agents answers.</p>
 
 <h2>Why it matters</h2>
-<p><b>Agents are now the main users of search.</b> By volume, agents already use the web more than people do {i('Exa, Aug 28, 2026.', [('Dynamic Highlights', 'https://exa.ai/blog/dynamic-highlights')])}. Search built for human clicks doesn't fit them.</p>
-<p><b>Context is the budget.</b> Every token your agent reads costs money, and answers get worse as the context fills up {i('Chroma tested 18 models: ~300 focused tokens beat ~113K tokens holding the same answer.', [('Chroma', 'https://www.trychroma.com/research/context-rot')])}.</p>
-<p><b>Delegation is how agents scale.</b> Hand research to a specialist, the way you'd hand it to a colleague, and get back a result your code can use straight away.</p>
+<p><b>Most searches aren't typed by people anymore.</b> Exa says agents already make up most of the web's traffic by volume {i('Exa, Aug 28, 2026.', [('Dynamic Highlights', 'https://exa.ai/blog/dynamic-highlights')])}. Yet most search tools still return what a person wants to see, a list of links and snippets, and the agent has to read all of it before it can use any of it.</p>
+<p><b>You pay for every page your agent reads, twice.</b> Once in tokens, and again in answer quality, because models get worse at finding the right fact as their context fills up. In one test, a focused 300-token input beat 113,000 tokens that held the same answer {i('Chroma tested 18 models.', [('Chroma', 'https://www.trychroma.com/research/context-rot')])}.</p>
+<p><b>Your agent has better things to do.</b> A coding agent should be writing code, and a sales agent should be writing the email. Handing the research to Exa is like handing it to a colleague who comes back with a short summary and the sources attached.</p>
 
 <h2>How it works</h2>
 <div class="panel"><div class="steps">
@@ -198,15 +199,15 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 </div></div>
 
 <h2>Where Exa Agent runs today</h2>
-<p>Exa Agent launched in June 2026. It already sits inside the places where agents get built and bought.</p>
+<p>Exa Agent only launched in June, but you can already reach it from a few places developers and IT teams use every day.</p>
 <div class="panel"><div class="runs">{runs}</div></div>
 
 <h2>What teams are building on Exa</h2>
-<p>Exa Agent runs on the same search layer that these teams already build their own agents on.</p>
+<p>Exa Agent is new, but the search underneath it isn't. Here's how some teams already use Exa inside their own agents.</p>
 <div class="panel"><div class="cus">{cust}</div></div>
 
 <h2>Why Exa fits agent-to-agent</h2>
-<p>When your agent hires another agent, check four things: how many tokens come back, whether the first results are the right ones, whether lists are complete, and whether it can handle research that takes many steps.</p>
+<p>If you're picking an agent to do your agent's research, a few things matter most: how much text it sends back, whether the top results are actually relevant, whether it finds everything on a list and not just the first few, and whether it can stay with a question that takes many steps. Here's how Exa compares.</p>
 <div class="panel"><div class="bars2">
   <div class="ch"><span class="ch-h">Tokens sent back to your agent</span>
     <div class="br"><span>Full page</span><span class="tr"><span class="fl g" style="width:100%"></span></span><b>100%</b></div>
@@ -242,9 +243,9 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 <h2>How to call it</h2>
 <div class="tabs" role="tablist">{tabs_btn}</div>
 {tabs_pan}
-<p style="margin-top:14px">You pay per task: $0.012 at <code>minimal</code> effort up to $1.00 at <code>xhigh</code>, with a spending cap you set {i('Exa Agent pricing. auto and ultra are metered, with default caps of $5 and $20.', [('Agent API', 'https://exa.ai/docs/reference/agent-api/overview')])}. Read the <a href="https://exa.ai/docs/reference/agent-api/overview" target="_blank" rel="noopener">Agent API docs</a> or <a href="https://dashboard.exa.ai" target="_blank" rel="noopener">get an API key</a> to start.</p>
+<p style="margin-top:14px">Pricing is per task, so you know the cost up front: $0.012 for a quick lookup at <code>minimal</code> effort, up to $1.00 for a deep one at <code>xhigh</code>, and you can set a cap {i('Exa Agent pricing. auto and ultra are metered, with default caps of $5 and $20.', [('Agent API', 'https://exa.ai/docs/reference/agent-api/overview')])}. The <a href="https://exa.ai/docs/reference/agent-api/overview" target="_blank" rel="noopener">Agent API docs</a> have the full reference, or <a href="https://dashboard.exa.ai" target="_blank" rel="noopener">grab an API key</a> and try the snippet above.</p>
 
-<p class="sign">Give your agents a search agent.</p>
+<p class="sign">Next time your agent opens its tenth browser tab, try handing the question to Exa instead.</p>
 </div>
 <footer class="col">Example writeup by Pallavi Singla, showing how Exa could position agent-to-agent search for customers. Not written, reviewed or endorsed by Exa. Customer stories and Exa benchmark numbers come from Exa's public pages; open-benchmark numbers come from an independent test.</footer>
 <script>
