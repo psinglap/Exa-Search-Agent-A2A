@@ -289,6 +289,42 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 <p>That matters because companies are starting to buy agents the way they buy software. Google's Gemini Enterprise Agent Marketplace lists agents from partners that any employee's Gemini agent can call, and Google asks those agents to speak A2A {i("Google's guide to publishing agents in Gemini Enterprise and Google Cloud Marketplace.", [('Google Cloud', 'https://cloud.google.com/blog/topics/developers-practitioners/publish-agents-in-gemini-enterprise-and-google-cloud-marketplace')])}. <b>Google chose Exa.</b> When it opened the Gemini Enterprise Agent Marketplace in April 2026, Exa Agent was a launch partner, and Google is also bringing Exa's search into Gemini grounding, now in private preview {i('Exa + Google Cloud, Apr 28, 2026: Exa Agent in the Gemini Enterprise Agent Marketplace ("No code, no separate procurement") and Grounding with Exa in private preview.', [('Exa blog', 'https://exa.ai/blog/exa-google-cloud')])}. Any company's Gemini agent can hire Exa today.</p>
 <p>Search is the job most agents hand off first. Almost every agent needs facts from the web, and very few want to read the web themselves. That's the opening for a search agent other agents can hire.</p>
 
+<h2>Search API or Exa Agent?</h2>
+<p>Both run on the same Exa index. The difference is who does the work. With the Search API, your agent gets the ingredients and cooks. With Exa Agent, it gets the finished dish.</p>
+<div class="panel"><div class="vs">
+  <div class="lane">
+    <span class="ln-h">Exa Search API</span><span class="ln-s">your agent does the work</span>
+    <div class="node">Your agent</div>
+    <div class="trip"><span class="out">query 1 →</span><span class="back">← 10 links + pages</span></div>
+    <div class="trip"><span class="out">query 2 →</span><span class="back">← 10 links + pages</span></div>
+    <div class="trip"><span class="out">query 3 →</span><span class="back">← 10 links + pages</span></div>
+    <div class="trip fade"><span class="out">…</span><span class="back">up to 186 round trips</span></div>
+    <div class="node muted">Your agent reads, compares and formats</div>
+    <div class="meter"><span class="m-l">Your agent's context</span><span class="m-t"><span class="m-f full"></span></span><span class="m-v">fills up</span></div>
+    <div class="facts"><span>~1 s per search</span><span>priced per search</span><span>best for quick lookups</span></div>
+  </div>
+  <div class="lane on">
+    <span class="ln-h">Exa Agent</span><span class="ln-s">Exa does the work</span>
+    <div class="node">Your agent</div>
+    <div class="hand">↓ one task + the JSON shape you want</div>
+    <div class="node exa">Exa Agent<div class="loop"><span>search</span><span>read</span><span>check</span><span>repeat</span></div><small>all on Exa's side</small></div>
+    <div class="hand">↓ one answer, a source for every field</div>
+    <div class="node">Your agent uses it</div>
+    <div class="meter"><span class="m-l">Your agent's context</span><span class="m-t"><span class="m-f small"></span></span><span class="m-v">~2K tokens</span></div>
+    <div class="facts"><span>seconds to minutes</span><span>priced per task</span><span>best for research and lists</span></div>
+  </div>
+</div></div>
+<details class="more"><summary>Full comparison</summary><div class="bt cmp"><table><thead><tr><th></th><th>Exa Search API</th><th class="x">Exa Agent</th></tr></thead><tbody>
+<tr><td><b>What you send</b></td><td>A query</td><td class="x">A task, plus the JSON shape you want back</td></tr>
+<tr><td><b>What comes back</b></td><td>Ranked links with highlights or page text</td><td class="x">One structured answer, with a source for every field</td></tr>
+<tr><td><b>Who does the reading</b></td><td>Your agent: it searches again, reads, compares and formats</td><td class="x">Exa: it runs the searches, reads and checks on its side</td></tr>
+<tr><td><b>Speed</b></td><td>About a second per search</td><td class="x">Seconds to minutes; you get a run ID to poll or stream</td></tr>
+<tr><td><b>Price</b></td><td>Per search, from $4 per 1,000, plus your own tokens to read the results</td><td class="x">Per task, $0.012 to $1.00, with a cap you set</td></tr>
+<tr><td><b>Best for</b></td><td>Quick lookups inside a live turn: chat, voice, a fact check</td><td class="x">Research with many steps, lists of companies or people, enriching rows</td></tr>
+<tr><td><b>How other agents reach it</b></td><td>As a tool: API, SDK or MCP</td><td class="x">As a peer: through its A2A Agent Card, from any A2A agent</td></tr>
+</tbody></table></div></details>
+<p class="cap" style="margin:8px 2px 0">An MCP tool is something your agent uses and waits on. An A2A agent is someone your agent delegates to: it hands over the task, follows progress and gets the result back when it's ready. That's why research belongs with an agent.</p>
+
 <h2>What changes for your agent</h2>
 <p><b>Most searches aren't typed by people anymore.</b> Exa says agents already make up most of the web's traffic by volume {i('Exa, Aug 28, 2026.', [('Dynamic Highlights', 'https://exa.ai/blog/dynamic-highlights')])}. Yet most search tools still return what a person wants to see, a list of links and snippets, and the agent has to read all of it before it can use any of it.</p>
 <p><b>You pay for every page your agent reads, twice.</b> Once in tokens, and again in answer quality, because models get worse at finding the right fact as their context fills up. In one test, a focused 300-token input beat 113,000 tokens that held the same answer {i('Chroma tested 18 models.', [('Chroma', 'https://www.trychroma.com/research/context-rot')])}.</p>
@@ -356,42 +392,6 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 <div class="tabs" role="tablist">{tabs_btn}</div>
 {tabs_pan}
 <p style="margin-top:14px">Pricing is per task, so you know the cost up front: $0.012 for a quick lookup at <code>minimal</code> effort, up to $1.00 for a deep one at <code>xhigh</code>, and you can set a cap {i('Exa Agent pricing. auto and ultra are metered, with default caps of $5 and $20.', [('Agent API', 'https://exa.ai/docs/reference/agent-api/overview')])}. The <a href="https://exa.ai/docs/reference/agent-api/overview" target="_blank" rel="noopener">Agent API docs</a> have the full reference, or <a href="https://dashboard.exa.ai" target="_blank" rel="noopener">grab an API key</a> and try the snippet above.</p>
-
-<h2>Search API or Exa Agent?</h2>
-<p>Both run on the same Exa index. The difference is who does the work. With the Search API, your agent gets the ingredients and cooks. With Exa Agent, it gets the finished dish.</p>
-<div class="panel"><div class="vs">
-  <div class="lane">
-    <span class="ln-h">Exa Search API</span><span class="ln-s">your agent does the work</span>
-    <div class="node">Your agent</div>
-    <div class="trip"><span class="out">query 1 →</span><span class="back">← 10 links + pages</span></div>
-    <div class="trip"><span class="out">query 2 →</span><span class="back">← 10 links + pages</span></div>
-    <div class="trip"><span class="out">query 3 →</span><span class="back">← 10 links + pages</span></div>
-    <div class="trip fade"><span class="out">…</span><span class="back">up to 186 round trips</span></div>
-    <div class="node muted">Your agent reads, compares and formats</div>
-    <div class="meter"><span class="m-l">Your agent's context</span><span class="m-t"><span class="m-f full"></span></span><span class="m-v">fills up</span></div>
-    <div class="facts"><span>~1 s per search</span><span>priced per search</span><span>best for quick lookups</span></div>
-  </div>
-  <div class="lane on">
-    <span class="ln-h">Exa Agent</span><span class="ln-s">Exa does the work</span>
-    <div class="node">Your agent</div>
-    <div class="hand">↓ one task + the JSON shape you want</div>
-    <div class="node exa">Exa Agent<div class="loop"><span>search</span><span>read</span><span>check</span><span>repeat</span></div><small>all on Exa's side</small></div>
-    <div class="hand">↓ one answer, a source for every field</div>
-    <div class="node">Your agent uses it</div>
-    <div class="meter"><span class="m-l">Your agent's context</span><span class="m-t"><span class="m-f small"></span></span><span class="m-v">~2K tokens</span></div>
-    <div class="facts"><span>seconds to minutes</span><span>priced per task</span><span>best for research and lists</span></div>
-  </div>
-</div></div>
-<details class="more"><summary>Full comparison</summary><div class="bt cmp"><table><thead><tr><th></th><th>Exa Search API</th><th class="x">Exa Agent</th></tr></thead><tbody>
-<tr><td><b>What you send</b></td><td>A query</td><td class="x">A task, plus the JSON shape you want back</td></tr>
-<tr><td><b>What comes back</b></td><td>Ranked links with highlights or page text</td><td class="x">One structured answer, with a source for every field</td></tr>
-<tr><td><b>Who does the reading</b></td><td>Your agent: it searches again, reads, compares and formats</td><td class="x">Exa: it runs the searches, reads and checks on its side</td></tr>
-<tr><td><b>Speed</b></td><td>About a second per search</td><td class="x">Seconds to minutes; you get a run ID to poll or stream</td></tr>
-<tr><td><b>Price</b></td><td>Per search, from $4 per 1,000, plus your own tokens to read the results</td><td class="x">Per task, $0.012 to $1.00, with a cap you set</td></tr>
-<tr><td><b>Best for</b></td><td>Quick lookups inside a live turn: chat, voice, a fact check</td><td class="x">Research with many steps, lists of companies or people, enriching rows</td></tr>
-<tr><td><b>How other agents reach it</b></td><td>As a tool: API, SDK or MCP</td><td class="x">As a peer: through its A2A Agent Card, from any A2A agent</td></tr>
-</tbody></table></div></details>
-<p class="cap" style="margin:8px 2px 0">An MCP tool is something your agent uses and waits on. An A2A agent is someone your agent delegates to: it hands over the task, follows progress and gets the result back when it's ready. That's why research belongs with an agent.</p>
 
 <p class="sign">Next time your agent opens its tenth browser tab, try handing the question to Exa instead.</p>
 </div>
