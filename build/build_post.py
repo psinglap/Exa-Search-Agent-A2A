@@ -128,18 +128,26 @@ p{{margin:0 0 16px}}
 .st .n{{width:24px;height:24px;border-radius:50%;border:1px solid #cfcac5;display:grid;place-items:center;font:500 12px var(--mono);color:var(--muted)}}.st .n.on{{background:var(--brand);border-color:var(--brand);color:#fff}}
 .st b{{display:block;font-weight:500}}.st span{{font-size:14px;color:var(--muted)}}
 .st code{{font:11.5px var(--mono);color:var(--muted);text-align:right}}
-.acard{{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:12px}}
-.ac-head{{display:flex;gap:12px;align-items:center}}
-.ac-logo{{width:40px;height:40px;border-radius:10px;background:var(--brand);color:#fff;display:grid;place-items:center;font:500 20px var(--serif)}}
-.ac-head b{{display:block;font:500 18px var(--sans)}}.ac-head span{{font:11.5px var(--mono);color:var(--muted)}}
-.ac-live{{margin-left:auto;font:500 11px var(--mono)!important;color:#16794c!important;background:#e7f6ee;border-radius:99px;padding:3px 10px}}
-.ac-desc{{margin:0;font-size:14.5px;color:#374151}}
-.ac-grid{{display:grid;grid-template-columns:1.4fr 1fr;gap:12px 18px;border-top:1px solid var(--line);padding-top:12px}}
-.ac-grid>div:first-child{{grid-row:span 3}}
-.ac-k{{display:block;font:500 10.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--brand);margin-bottom:6px}}
-.ac-chips{{display:flex;flex-wrap:wrap;gap:6px}}.ac-chips span{{font-size:13px;background:var(--brand-soft);color:var(--ink);border-radius:8px;padding:4px 10px}}
-.ac-grid code{{display:block;font:12px var(--mono)}}.ac-s{{display:block;font-size:12.5px;color:var(--muted)}}
-.ac-foot{{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:10px;font-size:13px}}.ac-foot code{{font:12px var(--mono);color:var(--muted)}}
+.xc{{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:10px}}
+.xc-head{{display:flex;gap:12px;align-items:center}}
+.xc-logo{{width:46px;height:46px;border-radius:11px;border:1px solid var(--line);display:grid;place-items:center;background:#fff}}
+.xc-head b{{display:block;font:400 24px/1.1 var(--serif)}}.xc-head span{{font:11.5px var(--mono);color:var(--muted)}}
+.xc-live{{margin-left:auto;font:500 11px var(--mono)!important;color:#16794c!important;background:#e7f6ee;border-radius:99px;padding:3px 10px}}
+.xc-one{{margin:2px 0 6px;font-size:15.5px}}
+.xc-k{{display:block;font:500 10.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--brand);margin-top:6px}}
+.xc-uses{{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}}
+.xc-uses div{{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px}}
+.xc-uses b{{display:block;font-size:13.5px;font-weight:600;margin-bottom:4px}}.xc-uses span{{font:italic 400 14px/1.35 var(--serif);color:#374151}}
+.xc-why{{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}}
+.xc-why div{{border-left:3px solid var(--brand);padding:2px 0 2px 10px}}
+.xc-why b{{display:block;font:400 19px/1.2 var(--serif)}}.xc-why span{{font-size:13px;color:var(--muted)}}
+.xc-logos{{display:flex;flex-wrap:wrap;gap:8px}}
+.xc-logos span{{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:99px;padding:5px 12px 5px 6px;font-size:13px;background:#fff}}
+.xc-logos img,.xc-also img{{border-radius:4px}}
+.xc-also{{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}}
+.xc-also span{{display:inline-flex;gap:5px;align-items:center;color:var(--ink)}}
+.xc-foot{{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:flex-end;border-top:1px solid var(--line);padding-top:12px;margin-top:4px}}
+.xc-foot code{{font:12px var(--mono)}}.xc-foot a{{margin-left:auto;font-size:13.5px;font-weight:500}}
 .vs{{display:grid;grid-template-columns:1fr 1fr;gap:14px}}
 .lane{{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}}
 .lane.on{{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}}
@@ -207,8 +215,8 @@ code{{font-family:var(--mono);font-size:.88em}}
 .i:hover .pop,.i:focus .pop,.i:focus-within .pop{{display:block}}
 .sign{{font:400 26px/1.3 var(--serif);margin:40px 0 0;padding-top:22px;border-top:1px solid var(--line)}}
 footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
-@media (max-width:860px){{.cus{{grid-template-columns:repeat(2,minmax(0,1fr))}}}}
-@media (max-width:760px){{.hero-in,.cus,.bars2,.hub,.runs,.ac-grid,.vs{{grid-template-columns:1fr}}.ac-grid>div:first-child{{grid-row:auto}}.hub .core{{margin:6px auto}}.st{{grid-template-columns:30px 1fr}}.st code{{display:none}}.i .pop{{left:auto;right:-8px;transform:none}}.br{{grid-template-columns:92px 1fr 46px}}}}
+@media (max-width:860px){{.cus{{grid-template-columns:repeat(2,minmax(0,1fr))}}.xc-uses{{grid-template-columns:repeat(3,minmax(0,1fr))}}.xc-why{{grid-template-columns:1fr 1fr}}}}
+@media (max-width:760px){{.hero-in,.cus,.bars2,.hub,.runs,.vs,.xc-why{{grid-template-columns:1fr}}.xc-uses{{grid-template-columns:1fr 1fr}}.xc-foot a{{margin-left:0}}.hub .core{{margin:6px auto}}.st{{grid-template-columns:30px 1fr}}.st code{{display:none}}.i .pop{{left:auto;right:-8px;transform:none}}.br{{grid-template-columns:92px 1fr 46px}}}}
 </style></head><body>
 <div class="col"><h1>Exa Agent, the search agent your agents can hire</h1></div>
 
@@ -229,23 +237,55 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 
 <p class="lead">If you've built an agent that does research, you've probably watched it do something a little painful. It searches, opens five pages, skims them, searches again, opens five more. It gets there in the end, but it spends a lot of tokens and time on work that isn't really its job.</p>
 <p>Exa Agent is built for that moment. Instead of giving your agent links to read, you give Exa the question and the shape of the answer you want. Exa does the searching and reading on its side, then sends the answer back with a link behind every field, so you can check where each fact came from.</p>
-<p><b>Starting today, Exa Agent has a public A2A Agent Card.</b> Any agent that speaks A2A, whether it runs in Gemini Enterprise, AWS, Azure or your own stack, can now find Exa, see what it can do, and hand it a task. It's the same Exa Agent and the same API key; other agents just don't need custom code to reach it anymore.</p>
-<div class="panel"><div class="acard">
-  <div class="ac-head"><div class="ac-logo">E</div><div><b>Exa Agent</b><span>Exa · A2A 1.0 · v1.0</span></div><span class="ac-live">● Live</span></div>
-  <p class="ac-desc">Web research agent with its own search index. Send a task, optionally with a JSON Schema; get back schema-valid JSON with a source for every field.</p>
-  <div class="ac-grid">
-    <div><span class="ac-k">Skills</span><div class="ac-chips"><span>Research a question</span><span>Build a list of companies or people</span><span>Enrich rows you already have</span><span>Watch for changes</span></div></div>
-    <div><span class="ac-k">Endpoint</span><code>https://api.exa.ai/a2a/v1</code><span class="ac-s">JSON-RPC and HTTP+JSON</span></div>
-    <div><span class="ac-k">Sign-in</span><code>x-api-key</code><span class="ac-s">your existing Exa API key</span></div>
-    <div><span class="ac-k">Capabilities</span><span class="ac-s">streaming progress · push notifications</span></div>
+<p>Meet the <b>Exa A2A Card</b>. It's the public profile other agents read before they hire Exa: what Exa Agent is good at, how it differs from a search tool, where it's already listed, and how to connect. Any agent that speaks A2A can read it at <code>exa.ai/.well-known/agent-card.json</code> and send Exa a task, with no custom integration.</p>
+<div class="panel"><div class="xc">
+  <div class="xc-head">
+    <span class="xc-logo"><img src="logos/exa-mark.svg" alt="Exa logo" width="30" height="30"></span>
+    <div><b>Exa Agent</b><span>Exa A2A Card · A2A 1.0</span></div>
+    <span class="xc-live">● Live</span>
   </div>
-  <div class="ac-foot"><code>GET exa.ai/.well-known/agent-card.json</code><a href="exa-agent-card.example.json" target="_blank" rel="noopener">View the card JSON</a></div>
+  <p class="xc-one">The search agent your agents can hire. Send a task, get back one structured answer with a source for every field.</p>
+
+  <span class="xc-k">Hire it for</span>
+  <div class="xc-uses">
+    <div><b>Coding agents</b><span>“Find the current way to stream with this SDK.”</span></div>
+    <div><b>Sales and GTM</b><span>“Every EU fintech that launched an AI agent this year.”</span></div>
+    <div><b>Research</b><span>“What changed in this regulation in the last 12 months?”</span></div>
+    <div><b>Enrichment</b><span>“Add funding, headcount and HQ to these 50 accounts.”</span></div>
+    <div><b>Monitoring</b><span>“Tell me when a competitor changes its pricing.”</span></div>
+  </div>
+
+  <span class="xc-k">Why Exa, not another search tool</span>
+  <div class="xc-why">
+    <div><b>Its own index</b><span>The web plus 1B+ people and company profiles, so lists come back complete.</span></div>
+    <div><b>Answers, not links</b><span>Schema-valid JSON, with a source behind every field.</span></div>
+    <div><b>40% on-topic</b><span>The most relevant top 5 of four search APIs in an open benchmark.</span></div>
+    <div><b>Priced per task</b><span>$0.012 to $1.00 a task, with a spending cap you set.</span></div>
+  </div>
+
+  <span class="xc-k">Listed on</span>
+  <div class="xc-logos">
+    <span><img src="logos/gemini.google.com.png" alt="" width="18" height="18">Gemini Enterprise Agent Marketplace</span>
+    <span><img src="logos/modelcontextprotocol.io.png" alt="" width="18" height="18">MCP Registry · ai.exa/exa</span>
+    <span><img src="logos/aws.amazon.com.png" alt="" width="18" height="18">AWS Marketplace</span>
+    <span><img src="logos/pydantic.dev.png" alt="" width="18" height="18">Pydantic AI</span>
+    <span><img src="logos/agpt.co.jpg" alt="" width="18" height="18">AutoGPT</span>
+  </div>
+  <div class="xc-also">Exa Search is also built into <span><img src="logos/openrouter.ai.png" alt="" width="14" height="14">OpenRouter</span><span><img src="logos/vercel.com.png" alt="" width="14" height="14">Vercel AI Gateway</span><span><img src="logos/cloudflare.com.png" alt="" width="14" height="14">Cloudflare</span></div>
+
+  <div class="xc-foot">
+    <div><span class="xc-k">Card</span><code>exa.ai/.well-known/agent-card.json</code></div>
+    <div><span class="xc-k">Endpoint</span><code>api.exa.ai/a2a/v1</code></div>
+    <div><span class="xc-k">Sign-in</span><code>x-api-key</code></div>
+    <div><span class="xc-k">Supports</span><code>streaming · push</code></div>
+    <a href="exa-agent-card.example.json" target="_blank" rel="noopener">View the card JSON →</a>
+  </div>
 </div></div>
 
 <p>Google was designed for a person who runs two or three searches and clicks the best link. Agents don't work that way: one research task can set off as many as 186 searches {i('Measured across agentic search traces.', [('arXiv 2602.17518', 'https://arxiv.org/html/2602.17518')])}. Google gave people links. Exa gives agents answers.</p>
 
 <h2>Why agent-to-agent, and why now</h2>
-<p>Until recently, an agent that needed something it couldn't do itself had one option: call a tool and do the rest of the work on its own. A2A changes that. It's the open standard Google started in 2025 so that agents from different companies can find each other, hand over a task and get a result back. It now sits with the Linux Foundation, more than 150 organizations back it, and it's built into Google Cloud, AWS and Azure {i('A2A protocol: 150+ organizations, built into major cloud platforms.', [('Linux Foundation', 'https://linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year'), ('A2A spec', 'https://a2a-protocol.org/latest/specification/')])}.</p>
+<p>Until recently, an agent that needed something it couldn't do itself had one option: call a tool and do the rest of the work on its own. A2A changes that. It's the open standard Google started in 2025 so that agents from different companies can find each other, hand over a task and get a result back.</p>
 <p>That matters because companies are starting to buy agents the way they buy software. Google's Gemini Enterprise Agent Marketplace lists agents from partners that any employee's Gemini agent can call, and Google asks those agents to speak A2A {i("Google's guide to publishing agents in Gemini Enterprise and Google Cloud Marketplace.", [('Google Cloud', 'https://cloud.google.com/blog/topics/developers-practitioners/publish-agents-in-gemini-enterprise-and-google-cloud-marketplace')])}. Exa Agent was there at launch in April 2026 {i('Exa + Google Cloud, Apr 28, 2026: "No code, no separate procurement."', [('Exa blog', 'https://exa.ai/blog/exa-google-cloud')])}. So when a company's Gemini agent needs research done, Exa is already on the shelf, with no code to write and no new contract to sign.</p>
 <p>Search is the job most agents hand off first. Almost every agent needs facts from the web, and very few want to read the web themselves. That's the opening for a search agent other agents can hire.</p>
 
