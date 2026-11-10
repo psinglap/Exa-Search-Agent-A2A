@@ -12,23 +12,24 @@ def i(text, links):
 
 # ---------- where Exa Agent runs today ----------
 RUNS = [
- ('Gemini Enterprise', 'Admins add Exa Agent from the Agent Marketplace; staff run web research from their workspace. "No code, no separate procurement."', i('Exa + Google Cloud, Apr 28, 2026.', [('Exa blog', 'https://exa.ai/blog/exa-google-cloud')])),
- ('Claude, Codex and other MCP clients', 'The <code>agent_run</code> tool in Exa MCP hands a research task to Exa Agent.', i('Exa changelog, Jul 1, 2026: "Exa Agent is now available within Exa MCP."', [('Changelog', 'https://exa.ai/docs/changelog')])),
- ('Pydantic AI', 'An <code>ExaAgent</code> capability lets any Pydantic AI agent "delegate a research task to an asynchronous Exa agent run".', i('Pydantic AI docs.', [('Pydantic AI', 'https://pydantic.dev/docs/ai/harness/exa-search/')])),
- ('AutoGPT', 'A no-code Exa Agent block for deep research, list building and enrichment.', i('AutoGPT integration docs.', [('AutoGPT', 'https://agpt.co/docs/integrations/block-integrations/agent')])),
+ ('gemini.google.com.png', 'Gemini Enterprise', 'Admins add Exa Agent from the Agent Marketplace; staff run web research from their workspace. "No code, no separate procurement."', i('Exa + Google Cloud, Apr 28, 2026.', [('Exa blog', 'https://exa.ai/blog/exa-google-cloud')])),
+ ('claude.ai.png', 'Claude, Codex and other MCP clients', 'The <code>agent_run</code> tool in Exa MCP hands a research task to Exa Agent.', i('Exa changelog, Jul 1, 2026: "Exa Agent is now available within Exa MCP."', [('Changelog', 'https://exa.ai/docs/changelog')])),
+ ('pydantic.dev.png', 'Pydantic AI', 'An <code>ExaAgent</code> capability lets any Pydantic AI agent "delegate a research task to an asynchronous Exa agent run".', i('Pydantic AI docs.', [('Pydantic AI', 'https://pydantic.dev/docs/ai/harness/exa-search/')])),
+ ('agpt.co.jpg', 'AutoGPT', 'A no-code Exa Agent block for deep research, list building and enrichment.', i('AutoGPT integration docs.', [('AutoGPT', 'https://agpt.co/docs/integrations/block-integrations/agent')])),
 ]
-runs = ''.join(f'<div class="rn"><b>{n}</b><p>{d} {s}</p></div>' for n, d, s in RUNS)
+runs = ''.join(f'<div class="rn"><div class="rh"><img src="logos/{lg}" alt="" width="28" height="28"><b>{n}</b></div><p>{d} {s}</p></div>' for lg, n, d, s in RUNS)
 
 # ---------- customers building agents on Exa (case studies) ----------
 CUST = [
- ('Sales agents', 'HubSpot', 'Breeze agents pull live people and company data into CRM work; Monitors start workflows when a company changes.', '40% better latency', 'Search · Monitors', 'https://exa.ai/customers/hubspot'),
- ('Lead agents', 'monday.com', 'Reps ask for leads in plain language and get structured people and company records in monday CRM.', '2.7M enrichments · 50% less research time', 'Search', 'https://exa.ai/customers/monday'),
- ('AI SDRs', '11x', 'Alice and Julian find each prospect\'s buying signals before they write outreach.', '7.2M+ searches · 2.7M+ Webset items', 'Search · Websets', 'https://exa.ai/customers/11x'),
- ('Code review', 'CodeRabbit', 'One Deep search call, only when outside context could change a review comment.', '70–75% fewer search calls · P50 7.1 s', 'Deep', 'https://exa.ai/customers/coderabbit'),
- ('Market research', 'Obvious', 'Builds cohorts of similar companies, with contacts, in one enriched call.', '20x faster · 99% lower cost', 'Websets', 'https://exa.ai/customers/obvious'),
- ('Finance alerts', 'Revolut', 'When a stock moves, an agent fetches the news behind it and notifies users.', '1,500+ alerts a week · 2x opens', 'Search', 'https://exa.ai/customers/revolut'),
+ ('hubspot.com.png', 'HubSpot', 'Sales agents', '40%', 'better latency', 'Breeze agents pull live people and company data into CRM work, and Monitors start a workflow when an account changes.', 'Search · Monitors', 'https://exa.ai/customers/hubspot'),
+ ('monday.com.png', 'monday.com', 'Lead agents', '2.7M', 'enrichments, 50% less research time', 'Reps ask for leads in plain language and get structured people and company records in monday CRM.', 'Search', 'https://exa.ai/customers/monday'),
+ ('11x.ai.png', '11x', 'AI SDRs', '7.2M+', 'searches, 2.7M+ Webset items', "Its agents Alice and Julian find each prospect's buying signals before they write outreach.", 'Search · Websets', 'https://exa.ai/customers/11x'),
+ ('coderabbit.ai.png', 'CodeRabbit', 'Code review', '70–75%', 'fewer search calls', 'One Deep search call, made only when outside context could change a review comment. P50 is 7.1 s.', 'Deep', 'https://exa.ai/customers/coderabbit'),
+ ('obvious.png', 'Obvious', 'Market research', '20x', 'faster, at 99% lower cost', 'Builds cohorts of similar companies, with contacts, in one enriched call.', 'Websets', 'https://exa.ai/customers/obvious'),
+ ('revolut.com.png', 'Revolut', 'Finance alerts', '1,500+', 'alerts a week, 2x opens', 'When a stock moves, an agent fetches the news behind it and tells the user why.', 'Search', 'https://exa.ai/customers/revolut'),
 ]
-cust = ''.join(f'<div class="cu"><span class="cu-k">{k}</span><b>{n}</b><p>{h}</p><span class="cu-m">{m}</span><span class="cu-p">{p} {i(n + " case study.", [("exa.ai/customers", u)])}</span></div>' for k, n, h, m, p, u in CUST)
+cust = ''.join(f'''<div class="cu"><div class="cu-top"><img src="logos/{lg}" alt="{n} logo" width="36" height="36"><div><b>{n}</b><span class="cu-k">{k}</span></div></div>
+<div class="cu-stat"><span class="num">{num}</span><span class="lab">{lab}</span></div><p>{h}</p><div class="cu-f">{''.join(f'<span class="chip">{x.strip()}</span>' for x in p.split('·'))}<span class="sp"></span>{i(n + " case study on exa.ai.", [("Read the case study", u)])}</div></div>''' for lg, n, k, num, lab, h, p, u in CUST)
 
 # ---------- benchmark table (Exa 3.0, Oct 19, 2026) ----------
 BENCH = [('BrowseComp', 'Research that takes many steps', '91.8%', '91.5%', '83.5%', '63.1%'),
@@ -124,12 +125,21 @@ p{{margin:0 0 16px}}
 .st code{{font:11.5px var(--mono);color:var(--muted);text-align:right}}
 .runs{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
 .rn{{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px}}.rn b{{font-weight:500}}.rn p{{font-size:14px;margin:4px 0 0;color:#374151}}
-.cus{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}}
-.cu{{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;gap:4px;align-content:start}}
+.cus{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}}
+.cu{{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .15s,transform .15s}}
+.cu:hover{{box-shadow:0 8px 24px rgba(17,24,39,.08);transform:translateY(-2px)}}
+.cu-top{{display:flex;gap:10px;align-items:center}}
+.cu-top img,.rh img{{border-radius:8px;border:1px solid var(--line);background:#fff;object-fit:contain;flex:none}}
+.cu-top b{{display:block;font:500 17px/1.2 var(--sans)}}
 .cu-k{{font:500 10.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--brand)}}
-.cu b{{font:400 21px/1.2 var(--serif)}}.cu p{{font-size:14px;margin:0;color:#374151}}
-.cu-m{{font:500 13px var(--sans);color:var(--ink);background:var(--brand-soft);border-radius:6px;padding:3px 8px;justify-self:start}}
-.cu-p{{font:11.5px var(--mono);color:var(--muted)}}
+.cu-stat{{border-top:1px solid var(--line);padding-top:10px}}
+.cu-stat .num{{display:block;font:400 34px/1 var(--serif);color:var(--brand)}}
+.cu-stat .lab{{font-size:13px;color:var(--muted)}}
+.cu p{{font-size:14px;margin:0;color:#374151;flex:1}}
+.cu-f{{display:flex;gap:6px;align-items:center;flex-wrap:wrap}}
+.chip{{font:500 11px var(--mono);background:#f1efed;color:var(--muted);border-radius:99px;padding:2px 8px}}
+.sp{{flex:1}}
+.rh{{display:flex;gap:10px;align-items:center}}
 .bars2{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
 .ch{{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:9px;align-content:start}}
 .ch-h{{font:500 10.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}}
