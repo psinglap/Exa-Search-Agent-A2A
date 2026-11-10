@@ -330,14 +330,6 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 <p><b>You pay for every page your agent reads, twice.</b> Once in tokens, and again in answer quality, because models get worse at finding the right fact as their context fills up. In one test, a focused 300-token input beat 113,000 tokens that held the same answer {i('Chroma tested 18 models.', [('Chroma', 'https://www.trychroma.com/research/context-rot')])}.</p>
 <p><b>Your agent has better things to do.</b> A coding agent should be writing code, and a sales agent should be writing the email. Handing the research to Exa is like handing it to a colleague who comes back with a short summary and the sources attached.</p>
 
-<h2>How it works</h2>
-<div class="panel"><div class="steps">
-  <div class="st"><span class="n on">1</span><div><b>Describe the task</b><span>Plain language, plus a JSON Schema for the answer you want.</span></div><code>query · outputSchema</code></div>
-  <div class="st"><span class="n">2</span><div><b>Exa searches</b><span>Its own index: the web, 1B+ people, companies, papers and places.</span></div><code>effort: minimal → ultra</code></div>
-  <div class="st"><span class="n">3</span><div><b>Exa reads and checks</b><span>Exa reads the sources, so your agent doesn't have to.</span></div><code>budget.maxCostDollars</code></div>
-  <div class="st"><span class="n">4</span><div><b>Your agent gets the answer</b><span>Schema-valid JSON, with a source for every field.</span></div><code>output.structured · grounding</code></div>
-</div></div>
-
 <h2>Where Exa Agent runs today</h2>
 <p>Exa Agent only launched in June, but you can already reach it from a few places developers and IT teams use every day.</p>
 <div class="panel"><div class="runs">{runs}</div></div>
