@@ -170,7 +170,7 @@ table{{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}}
 th{{font:500 12.5px var(--sans);color:var(--muted);text-align:center;padding:12px 10px}}th:first-child{{text-align:left}}
 td{{padding:10px;text-align:center;border-top:1px solid var(--line)}}td:first-child{{text-align:left}}
 td .sub{{display:block;font-size:12px;color:var(--muted)}}
-th.x{{color:var(--ink);background:var(--brand-soft)}}td.x{{background:var(--brand-soft);font-weight:600}}
+th.x{{color:var(--ink);background:var(--brand-soft)}}.cmp td{{text-align:left;vertical-align:top}}.cmp th{{text-align:left}}.cmp td:first-child{{width:22%}}td.x{{background:var(--brand-soft);font-weight:600}}
 .hub{{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center}}
 .hub .side{{display:grid;gap:8px}}
 .hub .nd{{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:13.5px}}
@@ -297,6 +297,19 @@ footer{{margin:28px auto 70px;color:var(--muted);font-size:13px}}
 <div class="tabs" role="tablist">{tabs_btn}</div>
 {tabs_pan}
 <p style="margin-top:14px">Pricing is per task, so you know the cost up front: $0.012 for a quick lookup at <code>minimal</code> effort, up to $1.00 for a deep one at <code>xhigh</code>, and you can set a cap {i('Exa Agent pricing. auto and ultra are metered, with default caps of $5 and $20.', [('Agent API', 'https://exa.ai/docs/reference/agent-api/overview')])}. The <a href="https://exa.ai/docs/reference/agent-api/overview" target="_blank" rel="noopener">Agent API docs</a> have the full reference, or <a href="https://dashboard.exa.ai" target="_blank" rel="noopener">grab an API key</a> and try the snippet above.</p>
+
+<h2>Search API or Exa Agent?</h2>
+<p>Both run on the same Exa index. The difference is who does the work. With the Search API, your agent gets the ingredients and cooks. With Exa Agent, it gets the finished dish.</p>
+<div class="bt cmp"><table><thead><tr><th></th><th>Exa Search API</th><th class="x">Exa Agent</th></tr></thead><tbody>
+<tr><td><b>What you send</b></td><td>A query</td><td class="x">A task, plus the JSON shape you want back</td></tr>
+<tr><td><b>What comes back</b></td><td>Ranked links with highlights or page text</td><td class="x">One structured answer, with a source for every field</td></tr>
+<tr><td><b>Who does the reading</b></td><td>Your agent: it searches again, reads, compares and formats</td><td class="x">Exa: it runs the searches, reads and checks on its side</td></tr>
+<tr><td><b>Speed</b></td><td>About a second per search</td><td class="x">Seconds to minutes; you get a run ID to poll or stream</td></tr>
+<tr><td><b>Price</b></td><td>Per search, from $4 per 1,000, plus your own tokens to read the results</td><td class="x">Per task, $0.012 to $1.00, with a cap you set</td></tr>
+<tr><td><b>Best for</b></td><td>Quick lookups inside a live turn: chat, voice, a fact check</td><td class="x">Research with many steps, lists of companies or people, enriching rows</td></tr>
+<tr><td><b>How other agents reach it</b></td><td>As a tool: API, SDK or MCP</td><td class="x">As a peer: through its A2A Agent Card, from any A2A agent</td></tr>
+</tbody></table></div>
+<p class="cap" style="margin:8px 2px 0">An MCP tool is something your agent uses and waits on. An A2A agent is someone your agent delegates to: it hands over the task, follows progress and gets the result back when it's ready. That's why research belongs with an agent.</p>
 
 <p class="sign">Next time your agent opens its tenth browser tab, try handing the question to Exa instead.</p>
 </div>
