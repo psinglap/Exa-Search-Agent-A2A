@@ -52,8 +52,8 @@ p{margin:0 0 16px}
 .xc-uses div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px}
 .xc-uses b{display:block;font-size:13px;font-weight:600;margin-bottom:4px}.xc-uses span{font:400 12.5px/1.45 var(--sans);color:#4b5563}
 .xc-why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.xc-why div{border-left:3px solid var(--brand);padding:2px 0 2px 10px}
-.xc-why b{display:block;font:400 19px/1.2 var(--serif)}.xc-why span{font-size:13px;color:var(--muted)}
+.xc-why div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:3px}
+.xc-why i{font:normal 400 22px/1.1 var(--serif);color:var(--brand)}.xc-why b{display:block;font:600 13.5px/1.3 var(--sans);color:var(--ink)}.xc-why span{font-size:12.5px;line-height:1.45;color:var(--muted)}
 .xc-logos{display:flex;flex-wrap:wrap;gap:8px}
 .xc-logos span{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:99px;padding:5px 12px 5px 6px;font-size:13px;background:#fff}
 .xc-logos img,.xc-also img{border-radius:4px}
@@ -170,10 +170,10 @@ footer{margin:28px auto 70px;color:var(--muted);font-size:13px}
 
   <span class="xc-k">Why Exa, not another search tool</span>
   <div class="xc-why">
-    <div><b>Fewer tokens</b><span>About 8K tokens back per query, a fifth of what You.com sends, in an open benchmark.</span></div>
-    <div><b>Lower cost per answer</b><span>$0.012 per correct answer, below You.com ($0.026) and Tavily ($0.016). Priced per task, with a cap.</span></div>
-    <div><b>Its own index</b><span>The web plus 1B+ people and company profiles, so lists come back complete.</span></div>
-    <div><b>Answers, not links</b><span>Schema-valid JSON, with a source behind every field.</span></div>
+    <div><i>~8K</i><b>Fewer tokens</b><span>About 8K tokens back per query, a fifth of what You.com sends, in an open benchmark.</span></div>
+    <div><i>$0.012</i><b>Lower cost per answer</b><span>$0.012 per correct answer, below You.com ($0.026) and Tavily ($0.016). Priced per task, with a cap.</span></div>
+    <div><i>1B+</i><b>Its own index</b><span>The web plus 1B+ people and company profiles, so lists come back complete.</span></div>
+    <div><i>{ }</i><b>Answers, not links</b><span>Schema-valid JSON, with a source behind every field.</span></div>
   </div>
 
   <span class="xc-k">Listed on</span>
